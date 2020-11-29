@@ -1,0 +1,116 @@
+.form_input {
+  border-bottom: 1px solid #000;
+  position: relative;
+
+  &.require {
+    border-bottom: 1px solid $color-ui-primary;
+
+    &:after {
+      content: "必填資料";
+      display: inline-block;
+      position: absolute;
+      font-size: 12px;
+      color: $color-ui-primary;
+      right: 0;
+      bottom: -2em;
+    }
+  }
+
+  &.formatError {
+    border-bottom: 1px solid $color-ui-primary;
+
+    &:after {
+      content: "格式錯誤";
+      display: inline-block;
+      position: absolute;
+      font-size: 12px;
+      color: $color-ui-primary;
+      right: 0;
+      bottom: -2em;
+    }
+  }
+
+  input[type="text"],
+  input[type="tel"] {
+    border: none;
+    margin-left: 1em;
+    margin-bottom: 10px;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+  }
+}
+
+.form_select {
+  border-bottom: 1px solid #000;
+  position: relative;
+  padding-bottom: 10px;
+  position: relative;
+
+  &.require {
+    border-bottom: 1px solid $color-ui-primary;
+
+    &:after {
+      content: "必填資料";
+      display: inline-block;
+      position: absolute;
+      font-size: 12px;
+      color: $color-ui-primary;
+      right: 0;
+      bottom: -2em;
+    }
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 16px solid #000;
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+  }
+
+  select {
+    border: none;
+    width: calc(100% - 10px);
+    margin-left: 1em;
+    margin-bottom: 5px;
+    font-size: 15px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+  }
+}
+
+.form_bottom {
+  text-align: center;
+  position: relative;
+
+  @include rwd(pad) {
+    text-align: right;
+  }
+}
+
+button,
+.button {
+  min-width: 140px;
+  line-height: 44px;
+  height: 44px;
+  background-color: #000;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  text-align: center !important;
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+}

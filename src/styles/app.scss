@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  text-size-adjust: none;
+}
+
+html {
+  quotes: "“""”";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #F8F8F8;
+  color: #333;
+  line-height: 1.47059;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Noto Sans", "Noto Sans TC", "Source Sans Pro", sans-serif;
+  font-style: normal;
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
+  text-align: left;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+svg {
+  display: block;
+  height: 100%;
+}

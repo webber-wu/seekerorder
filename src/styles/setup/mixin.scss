@@ -1,0 +1,59 @@
+$breakpoints: ('mobile-l': (min-width: 360px),
+  'pad': (min-width: 768px),
+  'desktop': (min-width: 1024px),
+  'desktop-w': (min-width: 1280px),
+  'desktop-l': (min-width: 1366px),
+  'desktop-hd': (min-width: 1400px),
+  'desktop-wild': (min-width: 1680px),
+  'desktop-fullhd': (min-width: 1920px)) !default;
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin rwd($breakpoint) {
+
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    +"Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+$cubic: cubic-bezier(0.66, 0.12, 0.26, 0.97);
+
+@mixin transition($name, $delay) {
+  transition: $name 0.45s $cubic $delay;
+}
+
+@mixin clearFix() {
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    display: block;
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    visibility: hidden;
+  }
+
+  & {
+    *zoom: 1;
+  }
+}
+
+$cubic: cubic-bezier(0.66, 0.12, 0.26, 0.97);
