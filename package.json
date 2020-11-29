@@ -1,9 +1,12 @@
 {
-  "name": "react_redux_rxjs-eslint",
+  "name": "seeker-order-viewer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://webber-wu.github.io/seekerorder",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "webpack --config webpack.prod.js",
     "demo": "webpack --config  webpack.demo.js",
     "start": "webpack-dev-server --config webpack.dev.js",
@@ -15,6 +18,7 @@
   "dependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.0.3",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.3.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "mini-css-extract-plugin": "^0.11.0",
