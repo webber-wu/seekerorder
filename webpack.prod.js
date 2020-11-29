@@ -7,7 +7,7 @@ const common = require('./webpack.common.js');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    publicPath: process.env.demo ? './' : '/',
+    publicPath: process.env.demo ? './' : './',
   },
   plugins: [
     new CopyWebpackPlugin({
