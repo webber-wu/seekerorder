@@ -7,12 +7,16 @@
     position: relative;
 
     &>div {
-      margin-top: 100px;
       width: 50%;
       height: calc(100% - 100px);
       overflow-y: auto;
       padding: 40px;
       position: relative;
+      margin-top: 80px;
+
+      @include rwd(desktop-w) {
+        margin-top: 100px;
+      }
 
       h1 {
         text-align: center;
@@ -39,12 +43,14 @@
 
         span {
           display: inline-block;
-          width: 22px;
-          line-height: 22px;
-          font-size: 12px;
-          background-color: #E3D93B;
-          text-align: center;
-          border-radius: 50%;
+          // width: 22px;
+          // line-height: 22px;
+          font-size: 16px;
+          text-decoration: underline;
+          color: #ff3912;
+          // background-color: #E3D93B;
+          // text-align: center;
+          // border-radius: 50%;
         }
       }
 
@@ -56,15 +62,19 @@
         margin-bottom: 10px;
         transition: background-color .7s ease;
 
-        &.is-check {}
+        &.is-check {
+          opacity: .5;
+        }
 
         .content {
           display: flex;
+          justify-content: space-between;
           margin-bottom: 20px;
 
           .checker {
             width: 70px;
             margin-top: 1em;
+            margin-right: 10px;
 
             input[type="checkbox"] {
               display: none;
@@ -75,8 +85,8 @@
                 cursor: pointer;
                 position: relative;
                 padding: 10px 15px;
-                background-color: #7DBCE4;
-                border-radius: 6px;
+                background-color: #cecbc3d7;
+                // border-radius: 6px;
                 color: #fff;
 
 
@@ -92,6 +102,11 @@
                   margin-bottom: 5px;
                   display: none;
                 }
+
+                &:after {
+                  content: '未完成';
+                  display: inline-block;
+                }
               }
 
               &:checked {
@@ -103,6 +118,10 @@
                     display: inline-block;
                   }
 
+                  &:after {
+                    content: '完成';
+                  }
+
                 }
               }
             }
@@ -110,8 +129,8 @@
           }
 
           .info {
-            width: 170px;
-            margin-right: 10px;
+            // width: 170px;
+            // margin-right: 10px;
             margin-top: 1em;
             cursor: pointer;
 
@@ -132,71 +151,88 @@
             }
 
             .name {
-              font-size: 14px;
+              font-size: 18px;
               text-align: center;
+              font-weight: 900;
 
               span {
-                display: block;
-
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 10px;
               }
             }
           }
 
-          .list {
-            flex: 1;
 
-            ol {
-              margin: 0;
-              padding: 0;
-              list-style-position: inside;
+        }
+
+        .list {
+          flex: 1;
+
+          ol {
+            margin: 0;
+            padding: 0;
+            list-style-position: inside;
+          }
+
+          li {
+            font-size: 12px;
+            line-height: 3;
+            padding-left: 1em;
+            padding-right: 1em;
+            cursor: pointer;
+            position: relative;
+
+            @include rwd(desktop-w) {
+              font-size: 14px;
             }
 
-            li {
-              font-size: 14px;
-              line-height: 3;
-              padding-left: 1em;
-              padding-right: 1em;
-              cursor: pointer;
-              position: relative;
+            &:nth-child(even) {
+              background-color: #f0f0f0;
+            }
 
-              &:nth-child(even) {
-                background-color: #f0f0f0;
-              }
+            &:last-child {
+              margin-bottom: 0;
+            }
 
-              &:last-child {
-                margin-bottom: 0;
-              }
+            &.is-shortage {
+              color: #E08081;
+              font-weight: 900;
 
-              &.is-shortage {
-                color: #E08081;
-                font-weight: 900;
-
-                &:after {
-                  content: "缺";
-                  color: #fff;
-                  display: inline-block;
-                  border-radius: 6px;
-                  padding: 5px 10px;
-                  background-color: #E08081;
-                  margin-left: 10px;
-                  font-size: 16px;
-                  line-height: 20px;
-                  position: absolute;
-                  right: -16px;
-                  top: 50%;
-                  transform: translate(0, -50%);
-                }
-              }
-
-              span {
-                display: inline-block;
-                width: 22px;
-                line-height: 22px;
-                font-size: 14px;
+              &:after {
+                content: "缺";
                 color: #fff;
+                display: inline-block;
+                border-radius: 6px;
+                padding: 5px 10px;
                 background-color: #E08081;
-                text-align: center;
-                border-radius: 50%;
+                margin-left: 10px;
+                font-size: 16px;
+                line-height: 20px;
+                position: absolute;
+                right: -16px;
+                top: 50%;
+                transform: translate(0, -50%);
+              }
+            }
+
+            span {
+              display: inline-block;
+              width: 22px;
+              line-height: 22px;
+              font-size: 14px;
+              color: #fff;
+              background-color: #E08081;
+              text-align: center;
+              border-radius: 50%;
+
+              &.important {
+                width: 30px;
+                font-size: 16px;
+                font-weight: 900;
+                line-height: 30px;
+                background-color: #E3D93B;
+                color: #333;
               }
             }
           }
@@ -208,6 +244,12 @@
           p {
             font-size: 14px;
             color: #999;
+          }
+
+          &.customer {
+            textarea {
+              min-height: 5em;
+            }
           }
 
           textarea {
@@ -231,13 +273,22 @@
     left: 0;
     top: 0;
     background-color: #fff;
-    height: 100px;
     text-align: center;
     box-shadow: 0 1px 20px rgba(0, 0, 0, .1);
+    height: 80px;
+
+    @include rwd(desktop-w) {
+      height: 100px;
+    }
 
     .done {
-      font-size: 18px;
-      padding-top: 28px;
+      font-size: 14px;
+      padding-top: 22px;
+
+      @include rwd(desktop-w) {
+        font-size: 18px;
+        padding-top: 28px;
+      }
 
       &>div {
         display: inline-block;
@@ -285,7 +336,11 @@
     }
 
     .choice {
-      padding: 30px 0;
+      padding: 18px 0;
+
+      @include rwd(desktop-w) {
+        padding: 30px 0;
+      }
 
       .inputfile {
         width: 0.1px;

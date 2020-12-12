@@ -17,7 +17,10 @@ const OrderItem = ({ data }) => {
       className={`${isShortage ? 'is-shortage' : ''}`}
       onClick={toggleShortage}
     >
-      {data.產品} <span>{data.產品數量}</span>
+      {data.產品}{' '}
+      <span className={`${data.產品數量 > 1 ? 'important' : ''}`}>
+        {data.產品數量}
+      </span>
     </li>
   );
 };
@@ -44,26 +47,27 @@ const OrderBlock = ({ data }) => {
     <>
       <div className={`order ${isCheck ? 'is-check' : ''}`}>
         <div className="content">
+          <div className={`info ${isOlder ? 'is-older' : ''}`}>
+            <div className="name" onClick={setOldCustomer}>
+              <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span>
+              {data[0].顧客}{' '}
+            </div>
+          </div>
           <div className="checker">
             <input
               id={data[0].訂單編號}
               type="checkbox"
               onClick={toggleCheck}
             />
-            <label htmlFor={data[0].訂單編號}>完成</label>
-          </div>
-          <div className={`info ${isOlder ? 'is-older' : ''}`}>
-            <div className="name" onClick={setOldCustomer}>
-              {data[0].顧客}{' '}
-              <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span>
-            </div>
-          </div>
-          <div className="list">
-            <ol>{buylist}</ol>
+            <label htmlFor={data[0].訂單編號}></label>
           </div>
         </div>
 
-        <div className="comment">
+        <div className="list">
+          <ol>{buylist}</ol>
+        </div>
+
+        <div className="comment customer">
           <p>顧客備註：</p>
           <textarea disabled>
             {data[0].hasOwnProperty('顧客備註') ? data[0].顧客備註 : '無'}
@@ -197,7 +201,7 @@ function Home() {
             {sevenElevenOrder.length > 0 ? (
               <div className="block">
                 <div className="title">
-                  7-11 <span>{sevenElevenOrder.length}</span>
+                  7-11：<span>{sevenElevenOrder.length} 筆</span>
                 </div>
                 <Order array={sevenElevenOrder} />
               </div>
@@ -206,7 +210,7 @@ function Home() {
             {familyOrder.length > 0 ? (
               <div className="block">
                 <div className="title">
-                  全家便利商店 <span>{familyOrder.length}</span>
+                  全家便利商店：<span>{familyOrder.length} 筆</span>
                 </div>
                 <Order array={familyOrder} />
               </div>
@@ -215,7 +219,7 @@ function Home() {
             {postOrder.length > 0 ? (
               <div className="block">
                 <div className="title">
-                  郵局 <span>{postOrder.length}</span>
+                  郵局：<span>{postOrder.length} 筆</span>
                 </div>
                 <Order array={postOrder} />
               </div>
@@ -224,7 +228,7 @@ function Home() {
             {takeItOrder.length > 0 ? (
               <div className="block">
                 <div className="title">
-                  到店取貨 <span>{takeItOrder.length}</span>
+                  到店取貨：<span>{takeItOrder.length} 筆</span>
                 </div>
                 <Order array={takeItOrder} />
               </div>
@@ -234,7 +238,7 @@ function Home() {
             <h1>香港</h1>
             <div className="block">
               <div className="title">
-                順豐 <span>{hongKongOrder.length}</span>
+                順豐：<span>{hongKongOrder.length} 筆</span>
               </div>
               <Order array={hongKongOrder} />
             </div>
