@@ -17,10 +17,8 @@ const OrderItem = ({ data }) => {
       className={`${isShortage ? 'is-shortage' : ''}`}
       onClick={toggleShortage}
     >
-      {data.產品}{' '}
-      <span className={`${data.產品數量 > 1 ? 'important' : ''}`}>
-        {data.產品數量}
-      </span>
+      {data.商品名稱}{' '}
+      <span className={`${data.數量 > 1 ? 'important' : ''}`}>{data.數量}</span>
     </li>
   );
 };
@@ -28,13 +26,15 @@ const OrderItem = ({ data }) => {
 const OrderBlock = ({ data }) => {
   const [isCheck, setIsCheck] = useState(false);
   const [isOlder, setIsOlder] = useState(false);
+  const [orderNote, setOrderNote] = useState('');
+  const [customerNote, setCustomerNote] = useState('');
 
   const toggleCheck = () => {
     setIsCheck(!isCheck);
   };
 
   const buylist = data.map((item, index) => {
-    if (item.名稱 !== '費用') {
+    if (item.商品名稱 !== '費用') {
       return <OrderItem key={index} data={item} />;
     }
   });
@@ -49,8 +49,13 @@ const OrderBlock = ({ data }) => {
         <div className="content">
           <div className={`info ${isOlder ? 'is-older' : ''}`}>
             <div className="name" onClick={setOldCustomer}>
-              <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span>
-              {data[0].顧客}{' '}
+              {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
+              {data[0].訂購人}{' '}
+              {
+                <span>
+                  {data[0].顧客資料備註 === 'VIP會員' ? '⭐️VIP⭐️' : ''}
+                </span>
+              }
             </div>
           </div>
           <div className="checker">
@@ -69,14 +74,15 @@ const OrderBlock = ({ data }) => {
 
         <div className="comment customer">
           <p>顧客備註：</p>
-          <textarea disabled>
-            {data[0].hasOwnProperty('顧客備註') ? data[0].顧客備註 : '無'}
-          </textarea>
+          <textarea
+            disabled
+            defaultValue={data[0].hasOwnProperty('備註') ? data[0].備註 : '無'}
+          />
         </div>
 
         <div className="comment">
           <p>商家備註：</p>
-          <textarea>小豆 </textarea>
+          <textarea defaultValue="小豆" />
         </div>
       </div>
     </>
@@ -132,16 +138,18 @@ function Home() {
     const postoffice = [];
     const takeit = [];
     const orders = await getAllOrdersNum(data);
+    // console.log(orders);
     setAllOrder(orders);
     orders.forEach((order) => {
       const orderArray = getSameOrderArray(data, order);
-      if (orderArray[0].物流.indexOf('港澳') >= 0) {
+      console.log(orderArray);
+      if (orderArray[0].出貨方式.indexOf('港澳') >= 0) {
         hongkong.push(orderArray);
-      } else if (orderArray[0].物流.indexOf('7-11超商取貨') >= 0) {
+      } else if (orderArray[0].出貨方式.indexOf('7-11') >= 0) {
         sevenElevent.push(orderArray);
-      } else if (orderArray[0].物流.indexOf('全家超商取貨') >= 0) {
+      } else if (orderArray[0].出貨方式.indexOf('全家') >= 0) {
         family.push(orderArray);
-      } else if (orderArray[0].物流.indexOf('中華郵政') >= 0) {
+      } else if (orderArray[0].出貨方式.indexOf('中華郵政') >= 0) {
         postoffice.push(orderArray);
       } else {
         takeit.push(orderArray);
@@ -177,7 +185,7 @@ function Home() {
         }
         console.log(data);
         setReady(true);
-        data.pop();
+        // data.pop();
         dataProcess(data);
       } catch (e) {
         // 這裡可以丟擲檔案型別錯誤不正確的相關提示
