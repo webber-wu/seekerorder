@@ -17,7 +17,7 @@ const OrderItem = ({ data }) => {
       className={`${isShortage ? 'is-shortage' : ''}`}
       onClick={toggleShortage}
     >
-      {data.商品名稱}{' '}
+      {data.商品名稱} <b>{data.商品款式}</b>{' '}
       <span className={`${data.數量 > 1 ? 'important' : ''}`}>{data.數量}</span>
     </li>
   );
