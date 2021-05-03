@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import { useDispatch } from 'redux-react-hook';
 import { initials } from '../redux/action/uiAction';
@@ -28,6 +28,8 @@ const OrderBlock = ({ data }) => {
   const [isOlder, setIsOlder] = useState(false);
   const [orderNote, setOrderNote] = useState('');
   const [customerNote, setCustomerNote] = useState('');
+  const [copySuccess, setCopySuccess] = useState('');
+  const textAreaRef = useRef();
 
   const toggleCheck = () => {
     setIsCheck(!isCheck);
@@ -39,6 +41,19 @@ const OrderBlock = ({ data }) => {
     }
   });
 
+  const copyToClipboard = (e) => {
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    // This is just personal preference.
+    // I prefer to not show the whole text area selected.
+    e.target.focus();
+    setCopySuccess('已複製文字!');
+
+    setTimeout(() => {
+      setCopySuccess('');
+    }, 2000);
+  };
+
   const setOldCustomer = () => {
     setIsOlder(!isOlder);
   };
@@ -48,15 +63,14 @@ const OrderBlock = ({ data }) => {
       <div className={`order ${isCheck ? 'is-check' : ''}`}>
         <div className="content">
           <div className={`info ${isOlder ? 'is-older' : ''}`}>
-            <div className="name" onClick={setOldCustomer}>
-              {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
-              {data[0].訂購人}{' '}
-              {
+            {data[0].hasOwnProperty('顧客標籤') ? (
+              <div className="tag">
+                <b>{`${data[0].顧客標籤}`}</b>
                 <span>
                   {data[0].顧客資料備註 === 'VIP會員' ? '⭐️VIP⭐️' : ''}
                 </span>
-              }
-            </div>
+              </div>
+            ) : null}
           </div>
           <div className="checker">
             <input
@@ -67,7 +81,10 @@ const OrderBlock = ({ data }) => {
             <label htmlFor={data[0].訂單編號}></label>
           </div>
         </div>
-
+        <div className="name" onClick={setOldCustomer}>
+          {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
+          {data[0].訂購人}{' '}
+        </div>
         <div className="list">
           <ol>{buylist}</ol>
         </div>
@@ -81,8 +98,9 @@ const OrderBlock = ({ data }) => {
         </div>
 
         <div className="comment">
-          <p>商家備註：</p>
-          <textarea defaultValue="小豆" />
+          <button onClick={copyToClipboard}>複製文字</button>
+          <p>商家備註：{copySuccess}</p>
+          <textarea defaultValue="小豆" ref={textAreaRef} />
         </div>
       </div>
     </>
