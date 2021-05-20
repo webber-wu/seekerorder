@@ -81,9 +81,10 @@ const OrderBlock = ({ data }) => {
             <label htmlFor={data[0].訂單編號}></label>
           </div>
         </div>
-        <div className="name" onClick={setOldCustomer}>
+        <div className="name">
           {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
-          {data[0].訂購人}{' '}
+          <span>訂購人：{data[0].訂購人}</span>
+          收貨人：{data[0].收貨人名稱}{' '}
         </div>
         <div className="list">
           <ol>{buylist}</ol>

@@ -16,7 +16,10 @@ const Summary = ({
         <div className="done">
           <div className="store">
             便利商店：
-            <span>{sevenOrderNum + familyOrderNum + postOrderNum}</span>筆
+            <span>{sevenOrderNum + familyOrderNum}</span>筆
+          </div>
+          <div className="postoffice">
+            郵局：<span>{postOrderNum}</span>筆
           </div>
           <div className="takeit">
             自取：
