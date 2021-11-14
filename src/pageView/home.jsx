@@ -63,11 +63,11 @@ const OrderBlock = ({ data }) => {
       <div className={`order ${isCheck ? 'is-check' : ''}`}>
         <div className="content">
           <div className={`info ${isOlder ? 'is-older' : ''}`}>
-            {data[0].hasOwnProperty('顧客標籤') ? (
+            {data[0].hasOwnProperty('會員標籤') ? (
               <div className="tag">
-                <b>{`${data[0].顧客標籤}`}</b>
+                <b>{`${data[0].會員標籤}`}</b>
                 <span>
-                  {data[0].顧客資料備註 === 'VIP會員' ? '⭐️VIP⭐️' : ''}
+                  {data[0].會員資料備註 === 'VIP會員' ? '⭐️VIP⭐️' : ''}
                 </span>
               </div>
             ) : null}
@@ -83,7 +83,7 @@ const OrderBlock = ({ data }) => {
         </div>
         <div className="name">
           {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
-          <span>訂購人：{data[0].購買人名稱}</span>
+          {/* <span>訂購人：{data[0].購買人名稱}</span> */}
           收貨人：{data[0].收件人名稱}{' '}
         </div>
         <div className="list">
