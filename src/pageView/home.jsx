@@ -123,6 +123,7 @@ function Home() {
   const [ready, setReady] = useState(false);
   const [allOrder, setAllOrder] = useState([]);
   const [sevenElevenOrder, setSevenElevenOrder] = useState([]);
+  const [blackCatOrder, setBlackCatOrder] = useState([]);
   const [familyOrder, setFamilyOrder] = useState([]);
   const [postOrder, setPostOrder] = useState([]);
   const [hongKongOrder, setHongKongOrder] = useState([]);
@@ -153,6 +154,7 @@ function Home() {
   const dataProcess = async (data) => {
     const hongkong = [];
     const sevenElevent = [];
+    const blackCat = [];
     const family = [];
     const postoffice = [];
     const takeit = [];
@@ -166,6 +168,8 @@ function Home() {
         hongkong.push(orderArray);
       } else if (orderArray[0].出貨方式.indexOf('7-11') >= 0) {
         sevenElevent.push(orderArray);
+      } else if (orderArray[0].出貨方式.indexOf('黑貓宅急便') >= 0) {
+        blackCat.push(orderArray);
       } else if (orderArray[0].出貨方式.indexOf('全家') >= 0) {
         family.push(orderArray);
       } else if (orderArray[0].出貨方式.indexOf('中華郵政') >= 0) {
@@ -175,6 +179,7 @@ function Home() {
       }
     });
     setSevenElevenOrder(sevenElevent);
+    setBlackCatOrder(blackCat);
     setFamilyOrder(family);
     setPostOrder(postoffice);
     setHongKongOrder(hongkong);
@@ -234,6 +239,15 @@ function Home() {
               </div>
             ) : null}
 
+            {blackCatOrder.length > 0 ? (
+              <div className="block">
+                <div className="title">
+                  黑貓宅急便：<span>{blackCatOrder.length} 筆</span>
+                </div>
+                <Order array={blackCatOrder} />
+              </div>
+            ) : null}
+
             {familyOrder.length > 0 ? (
               <div className="block">
                 <div className="title">
@@ -278,6 +292,7 @@ function Home() {
         ready={ready}
         allOrderNum={allOrder.length}
         sevenOrderNum={sevenElevenOrder.length}
+        blackCatOrderNum={blackCatOrder.length}
         familyOrderNum={familyOrder.length}
         postOrderNum={postOrder.length}
         hongKongOrderNum={hongKongOrder.length}

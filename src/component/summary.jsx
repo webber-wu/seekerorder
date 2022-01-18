@@ -5,6 +5,7 @@ const Summary = ({
   onImportExcel,
   allOrderNum,
   sevenOrderNum,
+  blackCatOrderNum,
   familyOrderNum,
   postOrderNum,
   hongKongOrderNum,
@@ -17,6 +18,10 @@ const Summary = ({
           <div className="store">
             便利商店：
             <span>{sevenOrderNum + familyOrderNum}</span>筆
+          </div>
+          <div className="blackcat">
+            黑貓宅急便：
+            <span>{blackCatOrderNum}</span>筆
           </div>
           <div className="postoffice">
             郵局：<span>{postOrderNum}</span>筆
