@@ -5,7 +5,7 @@ import Home from './pageView/home';
 import NotMatch from './pageView/404';
 import './styles/styles.scss';
 
-console.log(process.env.DEV);
+// console.log(process.env.DEV);
 
 const App = () => (
   <div className="main">

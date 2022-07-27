@@ -26,8 +26,8 @@ const OrderItem = ({ data }) => {
 const OrderBlock = ({ data }) => {
   const [isCheck, setIsCheck] = useState(false);
   const [isOlder, setIsOlder] = useState(false);
-  const [orderNote, setOrderNote] = useState('');
-  const [customerNote, setCustomerNote] = useState('');
+  // const [orderNote, setOrderNote] = useState('');
+  // const [customerNote, setCustomerNote] = useState('');
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef();
 
@@ -86,8 +86,18 @@ const OrderBlock = ({ data }) => {
           {/* <span>訂購人：{data[0].購買人名稱}</span> */}
           收貨人：{data[0].收件人名稱}{' '}
         </div>
+        <hr />
         <div className="list">
           <ol>{buylist}</ol>
+        </div>
+        <hr />
+        <div className="coupon">
+          <p>優惠券名稱：</p>
+          <p>
+            <span>
+              {data[0].hasOwnProperty('優惠券名稱') ? data[0].優惠券名稱 : '無'}
+            </span>
+          </p>
         </div>
 
         <div className="comment customer">
@@ -163,7 +173,7 @@ function Home() {
     setAllOrder(orders);
     orders.forEach((order) => {
       const orderArray = getSameOrderArray(data, order);
-      console.log(orderArray);
+      // console.log(orderArray);
       if (orderArray[0].出貨方式.indexOf('港澳') >= 0) {
         hongkong.push(orderArray);
       } else if (orderArray[0].出貨方式.indexOf('7-11') >= 0) {
@@ -207,13 +217,14 @@ function Home() {
             break; // 如果只取第一張表，就取消註釋這行
           }
         }
-        console.log(data);
+        // console.log(data);
         setReady(true);
         // data.pop();
         dataProcess(data);
       } catch (e) {
         // 這裡可以丟擲檔案型別錯誤不正確的相關提示
         console.log('檔案型別不正確');
+        alert('檔案類型不正確');
         return;
       }
     };
