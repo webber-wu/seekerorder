@@ -54,9 +54,58 @@ const OrderBlock = ({ data }) => {
     }, 2000);
   };
 
-  const setOldCustomer = () => {
-    setIsOlder(!isOlder);
+  const ExcelDateToJSDate = (serial) => {
+    const utc_days = Math.floor(serial - 25569);
+    const utc_value = utc_days * 86400;
+    const date_info = new Date(utc_value * 1000);
+    const year = date_info.getFullYear();
+    const month = date_info.getMonth() + 1;
+    const day = date_info.getDate();
+    return year + ' / ' + month + ' / ' + day;
+    // var fractional_day = serial - Math.floor(serial) + 0.0000001;
+    // var total_seconds = Math.floor(86400 * fractional_day);
+    // var seconds = total_seconds % 60;
+    // total_seconds -= seconds;
+    // var hours = Math.floor(total_seconds / (60 * 60));
+    // var minutes = Math.floor(total_seconds / 60) % 60;
+    // return new Date(
+    //   date_info.getFullYear(),
+    //   date_info.getMonth(),
+    //   date_info.getDate(),
+    //   hours,
+    //   minutes,
+    //   seconds
+    // );
   };
+
+  // const timeConverter = (time) => {
+  //   console.log(time);
+  //   const timeCode = new Date(time * 1000);
+  //   const months = [
+  //     'Jan',
+  //     'Feb',
+  //     'Mar',
+  //     'Apr',
+  //     'May',
+  //     'Jun',
+  //     'Jul',
+  //     'Aug',
+  //     'Sep',
+  //     'Oct',
+  //     'Nov',
+  //     'Dec',
+  //   ];
+  //   const year = timeCode.getFullYear();
+  //   const month = months[timeCode.getMonth()];
+  //   const date = timeCode.getDate();
+  //   const formatTime = year + ' / ' + month + ' / ' + date;
+  //   console.log(formatTime);
+  //   return formatTime;
+  // };
+
+  // const setOldCustomer = () => {
+  //   setIsOlder(!isOlder);
+  // };
 
   return (
     <>
@@ -84,7 +133,14 @@ const OrderBlock = ({ data }) => {
         <div className="name">
           {/* <span>{data[0].顧客性別 === '先生' ? '🙋‍♂️' : '🙋‍♀️'}</span> */}
           {/* <span>訂購人：{data[0].購買人名稱}</span> */}
-          收貨人：{data[0].收件人名稱}{' '}
+          收貨人：{data[0].收件人名稱}
+          <span>
+            ( 生日：
+            {data[0].hasOwnProperty('會員生日')
+              ? ExcelDateToJSDate(data[0].會員生日) + ' '
+              : '無填寫'}
+            )
+          </span>
         </div>
         <hr />
         <div className="list">
