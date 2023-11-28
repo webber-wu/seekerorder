@@ -1,12 +1,11 @@
 .main {
   .container {
-
     display: flex;
     justify-content: space-between;
     height: 100vh;
     position: relative;
 
-    &>div {
+    & > div {
       width: 50%;
       height: calc(100% - 100px);
       overflow-y: auto;
@@ -31,7 +30,7 @@
 
     .taiwan {
       border-right: 1px solid #e9e9e9;
-      background-color: #EEF6F6;
+      background-color: #eef6f6;
     }
 
     .block {
@@ -58,12 +57,12 @@
         background-color: #fff;
         padding: 0 0 0 20px;
         border-radius: 6px;
-        box-shadow: 0 1px 10px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
         margin-bottom: 10px;
-        transition: background-color .7s ease;
+        transition: background-color 0.7s ease;
 
         &.is-check {
-          opacity: .5;
+          opacity: 0.5;
         }
 
         .content {
@@ -76,10 +75,10 @@
             margin-top: 1em;
             margin-right: 10px;
 
-            input[type="checkbox"] {
+            input[type='checkbox'] {
               display: none;
 
-              &~label {
+              & ~ label {
                 font-size: 12px;
                 font-weight: 900;
                 cursor: pointer;
@@ -89,9 +88,8 @@
                 // border-radius: 6px;
                 color: #fff;
 
-
                 &:before {
-                  content: "";
+                  content: '';
                   vertical-align: middle;
                   width: 10px;
                   height: 6px;
@@ -110,9 +108,9 @@
               }
 
               &:checked {
-                &~label {
+                & ~ label {
                   color: #fff;
-                  background-color: #69C99D;
+                  background-color: #69c99d;
 
                   &:before {
                     display: inline-block;
@@ -121,11 +119,9 @@
                   &:after {
                     content: '完成';
                   }
-
                 }
               }
             }
-
           }
 
           .info {
@@ -136,11 +132,11 @@
 
             &.is-older {
               &:after {
-                content: "老";
+                content: '老';
                 display: block;
                 width: 32px;
                 line-height: 32px;
-                background-color: #69C99D;
+                background-color: #69c99d;
                 color: #fff;
                 font-size: 14px;
                 font-weight: 900;
@@ -171,10 +167,7 @@
                 display: inline-block;
               }
             }
-
           }
-
-
         }
 
         .name {
@@ -231,16 +224,16 @@
             }
 
             &.is-shortage {
-              color: #E08081;
+              color: #e08081;
               font-weight: 900;
 
               &:after {
-                content: "缺";
+                content: '缺';
                 color: #fff;
                 display: inline-block;
                 border-radius: 6px;
                 padding: 5px 10px;
-                background-color: #E08081;
+                background-color: #e08081;
                 margin-left: 10px;
                 font-size: 16px;
                 line-height: 20px;
@@ -257,7 +250,7 @@
               line-height: 22px;
               font-size: 14px;
               color: #fff;
-              background-color: #E08081;
+              background-color: #e08081;
               text-align: center;
               border-radius: 50%;
 
@@ -266,7 +259,7 @@
                 font-size: 16px;
                 font-weight: 900;
                 line-height: 30px;
-                background-color: #E3D93B;
+                background-color: #e3d93b;
                 color: #333;
               }
             }
@@ -280,7 +273,7 @@
 
             span {
               font-size: 16px;
-              color: #E07B8C;
+              color: #e07b8c;
               padding-left: 10px;
             }
           }
@@ -327,7 +320,6 @@
         }
       }
     }
-
   }
 
   .summary {
@@ -337,7 +329,7 @@
     top: 0;
     background-color: #fff;
     text-align: center;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
     height: 80px;
 
     @include rwd(desktop-w) {
@@ -353,7 +345,7 @@
         padding-top: 28px;
       }
 
-      &>div {
+      & > div {
         display: inline-block;
         background-color: #f0f0f0;
         padding: 8px 15px;
@@ -367,26 +359,26 @@
       }
 
       .store {
-        background-color: #96AFB8;
+        background-color: #96afb8;
       }
 
       .blackcat {
-        background-color: #FEC32D;
+        background-color: #fec32d;
         color: #333;
       }
 
       .takeit {
-        background-color: #E3D93B;
+        background-color: #e3d93b;
         color: #333;
       }
 
       .hk {
-        background-color: #E08081;
+        background-color: #e08081;
         color: #fff;
       }
 
       .postoffice {
-        background-color: #95B992;
+        background-color: #95b992;
         color: #fff;
       }
 
@@ -398,7 +390,7 @@
         right: 30px;
         top: 50%;
         transform: translate(0, -50%);
-        background-color: #85C0D2;
+        background-color: #85c0d2;
         color: #fff;
 
         span {
@@ -424,11 +416,11 @@
         z-index: -1;
       }
 
-      .inputfile+label {
+      .inputfile + label {
         max-width: 80%;
         height: 42px;
         font-size: 1rem;
-        letter-spacing: .143em;
+        letter-spacing: 0.143em;
         /* 20px */
         font-weight: 700;
         text-overflow: ellipsis;
@@ -440,18 +432,18 @@
         /* 10px 20px */
       }
 
-      .inputfile:focus+label,
-      .inputfile.has-focus+label {
+      .inputfile:focus + label,
+      .inputfile.has-focus + label {
         outline: 1px dotted #000;
         outline: -webkit-focus-ring-color auto 5px;
       }
 
-      .inputfile+label * {
+      .inputfile + label * {
         /* pointer-events: none; */
         /* in case of FastClick lib use */
       }
 
-      .inputfile+label svg {
+      .inputfile + label svg {
         display: inline-block;
         width: 1em;
         height: 1em;
@@ -463,16 +455,16 @@
         /* 4px */
       }
 
-      .inputfile-1+label {
+      .inputfile-1 + label {
         color: #f1e5e6;
-        background-color: #E07B8C;
+        background-color: #e07b8c;
         border-radius: 4px;
       }
 
-      .inputfile-1:focus+label,
-      .inputfile-1.has-focus+label,
-      .inputfile-1+label:hover {
-        background-color: #EA92A0;
+      .inputfile-1:focus + label,
+      .inputfile-1.has-focus + label,
+      .inputfile-1 + label:hover {
+        background-color: #ea92a0;
       }
     }
   }
